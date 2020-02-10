@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Roster {
 
-    List<Pokemon> fighterList = new ArrayList<>();
+    List<PokeModel> fighterList = new ArrayList<>();
 
-    public void addFighter(Pokemon fighter){
+    public void addFighter(PokeModel fighter){
         fighterList.add(fighter);
     }
     public void getFighters(int max, int min){
