@@ -1,12 +1,56 @@
 package com.company;
 
+import com.fasterxml.jackson.databind.node.POJONode;
+
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-	PokeApi get = new PokeApi();
-    get.pokemonToGet();
+
+        System.out.println("1. Get bulbasaur.\n2. Get charmander.\n3. Get squirtle.");
+
+        boolean stop = false;
+        String pokemonToGet = null;
+        Scanner read = new Scanner(System.in);
+        int input = read.nextInt();
+
+        while (!stop) {
+
+            switch (input) {
+                case 1:
+                    pokemonToGet = "bulbasaur";
+                    stop = true;
+                    break;
+                case 2:
+                    pokemonToGet = "charmander";
+                    stop = true;
+                    break;
+                case 3:
+                    pokemonToGet = "squirtle";
+                    stop = true;
+                    break;
+                default:
+                    System.out.println("Wrong input.");
+                    break;
+            }
+        }
+        PokeApiConn connection = new PokeApiConn(pokemonToGet);
+
+        connection.printResponseBody();
+        PokeModel pokemon = connection.getJsonKey();
+
+        /*while (true) {
+            pokemonToGet = read.nextLine().toLowerCase();
+
+            if (!pokemonToGet.matches("[a-zA-Z_]+")) {
+                System.out.println("Invalid name.");
+                continue;
+            }
+            System.out.println(String.format("Fetching pokemon %s...", pokemonToGet));
+            break;
+        }*/
     }
 }

@@ -17,7 +17,6 @@ public class PokeModel {
     private List<PokeMoves> moves;
     private List<pokeStats> stats;
 
-
     public void getPokeInfo() {
 
         System.out.println(types.size());
@@ -25,6 +24,7 @@ public class PokeModel {
         types.forEach(type -> System.out.println(type.getType().getName()));
         System.out.println(moves.get(0).getMove().getName());
         System.out.println(stats.get(0).base_stat + " " + stats.get(0).stat.name);
+        //  Gets all pokemon moves.
         //  moves.forEach(move -> System.out.println(move.getMove().getName()));
     }
 
