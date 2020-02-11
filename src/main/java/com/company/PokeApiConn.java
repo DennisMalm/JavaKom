@@ -32,7 +32,7 @@ public class PokeApiConn {
         System.out.println(responseJson);
     }
 
-    public PokeModel getJsonKey() throws IOException {
+    public PokeModel jsonToJava() throws IOException {
 
         PokeModel pokeModel = null;
         try {

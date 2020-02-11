@@ -1,7 +1,5 @@
 package com.company;
 
-import com.fasterxml.jackson.databind.node.POJONode;
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -40,7 +38,7 @@ public class Main {
         PokeApiConn connection = new PokeApiConn(pokemonToGet);
 
         connection.printResponseBody();
-        PokeModel pokemon = connection.getJsonKey();
+        PokeModel pokemon = connection.jsonToJava();
 
         /*while (true) {
             pokemonToGet = read.nextLine().toLowerCase();
