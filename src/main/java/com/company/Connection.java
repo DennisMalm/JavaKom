@@ -2,7 +2,9 @@ package com.company;
 
 
 
-import com.company.pokemon.PokemonJson;
+import com.company.entity.PokemonJson;
+import com.company.entity.PokemonMovesJson;
+import com.google.gson.Gson;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,14 +25,14 @@ public class Connection {
 
     public PokemonJson getPokemon(String endPoint) throws IOException, InterruptedException {
 
-        PokemonJson pokemon =
-        conn(urlPokemon + endPoint);
+        PokemonJson pokemon = new Gson().fromJson(conn(urlPokemon + endPoint), PokemonJson.class);
 
         return pokemon;
     }
 
-    public void getMove() {
-
+    public PokemonMovesJson getMove(String endPoint) throws IOException, InterruptedException {
+        PokemonMovesJson move = new Gson().fromJson(conn(endPoint), PokemonMovesJson.class);
+        return move;
     }
 
     public String conn (String url) throws IOException, InterruptedException {

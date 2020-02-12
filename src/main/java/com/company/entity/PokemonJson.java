@@ -1,9 +1,8 @@
-package com.company.pokemon;
+package com.company.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -51,15 +50,15 @@ public class PokemonJson {
 
     @Data
     @NoArgsConstructor
-    private class PokeMoves {
+    public class PokeMoves {
         private AttackMove move;
 
 
         @Data
         @NoArgsConstructor
-        private class AttackMove {
+        public class AttackMove {
             private String name;
-            private String moveUrl;
+            private String url;
         }
     }
 
