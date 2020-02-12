@@ -18,8 +18,11 @@ public class PokemonJson {
     public List<PokemonType> types;
     public List<PokeMoves> moves;
     public List<pokeStats> stats;
-    public List<String> typerna = new ArrayList<>();
-    public List<PokemonMovesJson> pokemonMovesJsons = new ArrayList<>();
+    public List<PokemonMovesJson> jsonMove;
+
+    public void addMove(PokemonMovesJson move) {
+        jsonMove.add(move);
+    }
 
 
     public void getPokeInfo() {
@@ -31,13 +34,6 @@ public class PokemonJson {
         System.out.println(stats.get(0).base_stat + " " + stats.get(0).stat.name);
         //  Gets all pokemon moves.
         //  moves.forEach(move -> System.out.println(move.getMove().getName()));
-    }
-    
-    public void sortListsToSend() {
-
-        for(PokemonType type : types){
-            typerna.add(type.getType().name);
-        }
     }
 
     @Data
