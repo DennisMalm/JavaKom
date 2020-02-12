@@ -1,8 +1,8 @@
 package com.company;
 
 
-import com.company.entity.PokemonJson;
-import com.company.entity.PokemonMovesJson;
+import com.company.controller.PokemonController;
+import com.company.entity.Pokemon;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -39,15 +39,20 @@ public class Main {
                     break;
             }
         }
-        Connection conn = new Connection();
+
+        PokemonController controller = new PokemonController();
+        Pokemon pokemon = controller.createPokemon(pokemonToGet);
+        pokemon.getInfo();
+
+        /*Connection conn = new Connection();
 
 
         PokemonJson pokemon = conn.getPokemon(pokemonToGet);
         pokemon.getPokeInfo();
         System.out.println(pokemon.getMoves().get(0).getMove().getUrl());
-        PokemonMovesJson move = conn.getMove(pokemon.moves.get(0).getMove().getUrl());
+        MovesJson move = conn.getMove(pokemon.moves.get(0).getMove().getUrl());
 
-        move.moveInfo();
+        move.moveInfo();*/
 
 
         /*while (true) {

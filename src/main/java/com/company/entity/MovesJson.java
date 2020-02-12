@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class PokemonMovesJson {
+public class MovesJson {
 
 
 

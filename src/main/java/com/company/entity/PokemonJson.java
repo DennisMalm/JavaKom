@@ -3,6 +3,8 @@ package com.company.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Data
@@ -16,10 +18,29 @@ public class PokemonJson {
     
     public List<PokemonType> types;
     public List<PokeMoves> moves;
-    public List<pokeStats> stats;
-    public List<PokemonMovesJson> jsonMove;
+    public List<PokeStats> stats;
+    public List<MovesJson> jsonMove;
 
-    public void addMove(PokemonMovesJson move) {
+    public HashMap getStats(){
+        //List<Pokemon.Stats> statsToSend = new ArrayList<>();
+        HashMap<String, Integer> statMap = new HashMap<>();
+
+        for (PokeStats stat : stats){
+            int value = stat.getBase_stat();
+            String name = stat.getStat().getName();
+            statMap.put(stat.getStat().getName(),stat.getBase_stat());
+        }
+        return statMap;
+    }
+
+    public List getType() {
+        List<String> sendType = new ArrayList<>();
+
+        types.forEach(type -> sendType.add(type.getType().getName()));
+        return sendType;
+    }
+
+    public void addMove(MovesJson move) {
         jsonMove.add(move);
     }
 
@@ -37,7 +58,7 @@ public class PokemonJson {
 
     @Data
     @NoArgsConstructor
-    private class pokeStats{
+    private class PokeStats {
         private int base_stat;
         private SpecificStat stat;
 
