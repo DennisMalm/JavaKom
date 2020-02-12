@@ -1,21 +1,26 @@
-package com.company;
+package com.company.pokemon;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class PokeModel {
+public class PokemonJson {
 
     private String name;
     private int height;
     private int weight;
     private int id;
-    private List<PokemonType> types;
-    private List<PokeMoves> moves;
-    private List<pokeStats> stats;
+    
+    public List<PokemonType> types;
+    public List<PokeMoves> moves;
+    public List<pokeStats> stats;
+    public List<String> typerna = new ArrayList<>();
+    public List<PokemonMovesJson> pokemonMovesJsons = new ArrayList<>();
+
 
     public void getPokeInfo() {
 
@@ -26,6 +31,13 @@ public class PokeModel {
         System.out.println(stats.get(0).base_stat + " " + stats.get(0).stat.name);
         //  Gets all pokemon moves.
         //  moves.forEach(move -> System.out.println(move.getMove().getName()));
+    }
+    
+    public void sortListsToSend() {
+
+        for(PokemonType type : types){
+            typerna.add(type.getType().name);
+        }
     }
 
     @Data
@@ -46,6 +58,7 @@ public class PokeModel {
     private class PokeMoves {
         private AttackMove move;
 
+
         @Data
         @NoArgsConstructor
         private class AttackMove {
@@ -58,6 +71,7 @@ public class PokeModel {
     @NoArgsConstructor
     private class PokemonType {
         private Element type;
+
 
         @Data
         @NoArgsConstructor

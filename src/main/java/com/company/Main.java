@@ -1,5 +1,8 @@
 package com.company;
 
+
+import com.company.pokemon.PokemonJson;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -35,10 +38,12 @@ public class Main {
                     break;
             }
         }
-        PokeApiConn connection = new PokeApiConn(pokemonToGet);
+        ApiConnection connection = new ApiConnection(pokemonToGet);
 
         connection.printResponseBody();
-        PokeModel pokemon = connection.jsonToJava();
+        PokemonJson pokemon = connection.jsonToJava();
+        System.out.println(pokemon);
+
 
         /*while (true) {
             pokemonToGet = read.nextLine().toLowerCase();

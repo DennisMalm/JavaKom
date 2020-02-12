@@ -1,6 +1,7 @@
 package com.company;
 
 
+import com.company.pokemon.PokemonJson;
 import com.google.gson.Gson;
 
 
@@ -11,39 +12,41 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 
-public class PokeApiConn {
+public class ApiConnection {
 
     private String responseJson;
-    private String requestString = "https://pokeapi.co/api/v2/pokemon/";
+    private String requestPokemon = "https://pokeapi.co/api/v2/pokemon/";
+    private String requestMove = "https://pokeapi.co/api/v2/";
 
-    public PokeApiConn(String endPoint) throws IOException, InterruptedException {
+    public ApiConnection(String endPoint) throws IOException, InterruptedException {
 
-        requestString += endPoint;
+        requestPokemon += endPoint;
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(requestString))
+                .uri(URI.create(requestPokemon))
                 .build();
         HttpResponse<String> response =
                 client.send(request, HttpResponse.BodyHandlers.ofString());
         this.responseJson = response.body();
     }
 
+
     public void printResponseBody() {
         System.out.println(responseJson);
     }
 
-    public PokeModel jsonToJava() throws IOException {
+    public PokemonJson jsonToJava() throws IOException {
 
-        PokeModel pokeModel = null;
+        PokemonJson pokemonJson = null;
         try {
-            pokeModel = new Gson().fromJson(responseJson, PokeModel.class);
+            pokemonJson = new Gson().fromJson(responseJson, PokemonJson.class);
         } catch (IllegalStateException ISE) {
             System.out.println("That pokemon does not exist!");
         }
-        assert pokeModel != null;
-        System.out.println(pokeModel.getName() + " is the name of the pokemon object.");
-        pokeModel.getPokeInfo();
-        return pokeModel;
+        assert pokemonJson != null;
+        System.out.println(pokemonJson.getName() + " is the name of the pokemon object.");
+        pokemonJson.getPokeInfo();
+        return pokemonJson;
         
     }
 }
