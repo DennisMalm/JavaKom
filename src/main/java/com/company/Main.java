@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-
+        // test test test
         System.out.println("1. Get bulbasaur.\n2. Get charmander.\n3. Get squirtle.");
 
         boolean stop = false;
