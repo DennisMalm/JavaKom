@@ -21,7 +21,7 @@ public class Pokemon {
 
     }
 
-    public void getInfo() {
+    public void testInfo() {
         System.out.println("This is an Java Objekt.");
         System.out.println(types.size());
         System.out.println(name + "\nTypes:");
