@@ -44,6 +44,7 @@ public class Main {
         Pokemon pokemon = controller.createPokemon(pokemonToGet);
         pokemon.getInfo();
 
+
         /*Connection conn = new Connection();
 
 

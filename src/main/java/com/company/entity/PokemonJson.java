@@ -40,8 +40,12 @@ public class PokemonJson {
         return sendType;
     }
 
-    public void addMove(MovesJson move) {
-        jsonMove.add(move);
+    public List moveUrl() {
+        List<String> moveList = new ArrayList<>();
+        for (PokeMoves move : moves) {
+            moveList.add(move.getMove().getUrl());
+        }
+        return moveList;
     }
 
 

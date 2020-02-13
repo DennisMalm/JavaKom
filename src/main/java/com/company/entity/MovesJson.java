@@ -17,7 +17,7 @@ public class MovesJson {
 
     @Data
     @NoArgsConstructor
-    private class AttackType {
+    public class AttackType {
         private String name;
     }
 
