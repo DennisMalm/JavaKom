@@ -1,49 +1,17 @@
 package com.company;
 
 
-import com.company.controller.PokemonController;
-import com.company.entity.Pokemon;
-
 import java.io.IOException;
-import java.util.Scanner;
+import java.sql.SQLException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, SQLException {
 
-        // test test test
-        System.out.println("1. Get bulbasaur.\n2. Get charmander.\n3. Get squirtle.");
-
-        boolean stop = false;
-        String pokemonToGet = null;
-        Scanner read = new Scanner(System.in);
-        int input = read.nextInt();
-
-        while (!stop) {
-
-            switch (input) {
-                case 1:
-                    pokemonToGet = "bulbasaur";
-                    stop = true;
-                    break;
-                case 2:
-                    pokemonToGet = "charmander";
-                    stop = true;
-                    break;
-                case 3:
-                    pokemonToGet = "squirtle";
-                    stop = true;
-                    break;
-                default:
-                    System.out.println("Wrong input.");
-                    break;
-            }
-        }
-
-        PokemonController controller = new PokemonController();
-        Pokemon pokemon = controller.createPokemon(pokemonToGet);
-        pokemon.testInfo();
-
+        boolean stop;
+        do {
+            stop = Menu.menu();
+        } while (!stop);
 
         /*Connection conn = new Connection();
 

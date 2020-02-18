@@ -22,12 +22,10 @@ public class PokemonJson {
     public List<MovesJson> jsonMove;
 
     public HashMap getStats(){
-        //List<Pokemon.Stats> statsToSend = new ArrayList<>();
+
         HashMap<String, Integer> statMap = new HashMap<>();
 
         for (PokeStats stat : stats){
-            int value = stat.getBase_stat();
-            String name = stat.getStat().getName();
             statMap.put(stat.getStat().getName(),stat.getBase_stat());
         }
         return statMap;
@@ -42,9 +40,11 @@ public class PokemonJson {
 
     public List moveUrl() {
         List<String> moveList = new ArrayList<>();
-        for (PokeMoves move : moves) {
+
+        moves.forEach(move -> moveList.add(move.getMove().getUrl()));
+        /*for (PokeMoves move : moves) {
             moveList.add(move.getMove().getUrl());
-        }
+        }*/
         return moveList;
     }
 
@@ -75,13 +75,13 @@ public class PokemonJson {
 
     @Data
     @NoArgsConstructor
-    public class PokeMoves {
+    private class PokeMoves {
         private AttackMove move;
 
 
         @Data
         @NoArgsConstructor
-        public class AttackMove {
+        private class AttackMove {
             private String name;
             private String url;
         }
@@ -98,7 +98,7 @@ public class PokemonJson {
         private class Element {
             private String name;
         }
-    }
 
+    }
 
 }

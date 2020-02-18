@@ -2,7 +2,7 @@ package com.company.creator;
 
 
 import com.company.Utility;
-import com.company.retrieval.Connection;
+import com.company.connection.ConnectionApi;
 import com.company.entity.Moves;
 import com.company.entity.MovesJson;
 import com.company.entity.Pokemon;
@@ -15,10 +15,15 @@ import java.util.List;
 
 public class PokemonService {
 
-    Connection connection = Connection.getInstance();
+    ConnectionApi connectionApi = ConnectionApi.getInstance();
+
+    public Pokemon pokemonExists() throws IOException, InterruptedException {
+        String name = Utility.validInput();
+        return createPokemon(name);
+    }
 
     public Pokemon createPokemon(String name) throws IOException, InterruptedException {
-        PokemonJson pokemonJson = connection.getPokemon(name);
+        PokemonJson pokemonJson = connectionApi.getPokemon(name);
         return new Pokemon(pokemonJson, createMoveSet(pokemonJson));
     }
 
@@ -28,8 +33,8 @@ public class PokemonService {
 
         if (!moveList.isEmpty()) {
             for (String moveUrl : moveList) {
-                connection.getMove(moveUrl);
-                MovesJson movesJson = connection.getMove(moveUrl);
+                connectionApi.getMove(moveUrl);
+                MovesJson movesJson = connectionApi.getMove(moveUrl);
                 Moves movesJava = new Moves(movesJson);
                 movesJavaList.add(movesJava);
             }

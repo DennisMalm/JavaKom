@@ -1,4 +1,4 @@
-package com.company.retrieval;
+package com.company.connection;
 
 import com.company.entity.MovesJson;
 import com.company.entity.PokemonJson;
@@ -10,27 +10,32 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class Connection {
+public class ConnectionApi {
 
     //  API endpoint URL.
     private String urlPokemon = "https://pokeapi.co/api/v2/pokemon/";
+    //  Singleton instance of connection with API.
+    private static ConnectionApi instance = new ConnectionApi();
 
-    //  Singelton instance of connection with API.
-    private static Connection instance = new Connection();
+    private ConnectionApi() {
+    }
 
-    private Connection() {}
-
-    public static Connection getInstance() {
+    public static ConnectionApi getInstance() {
+        if(instance == null)
+            instance = new ConnectionApi();
         return instance;
     }
 
     private String conn(String url) throws IOException, InterruptedException {
+
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url)).build();
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
+        //  Insert into local DB if not exists
+        ConnectionMongo.INSTANCE.addRecord(response.body());
         return response.body();
     }
 

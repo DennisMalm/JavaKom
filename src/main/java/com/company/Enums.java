@@ -6,20 +6,23 @@ public class Enums {
 
     enum Choice {
         PRINTALL,
+        REMOVE,
         SEARCH,
         QUIT,
-        REMOVE,
         ADD,
         MOVIES,
         EDIT,
+        FIGHT,
+
     }
     public static Map<Integer, Choice> intToChoice = Map.of(
-            1, Choice.PRINTALL,
-            2, Choice.SEARCH,
-            3, Choice.ADD,
-            4, Choice.REMOVE,
-            5, Choice.EDIT,
-            6, Choice.MOVIES,
-            7, Choice.QUIT
+            1, Choice.ADD,
+            2, Choice.REMOVE,
+            3, Choice.PRINTALL,
+            4, Choice.FIGHT,
+            5, Choice.SEARCH,
+            6, Choice.EDIT,
+            7, Choice.MOVIES,
+            8, Choice.QUIT
     );
 }
