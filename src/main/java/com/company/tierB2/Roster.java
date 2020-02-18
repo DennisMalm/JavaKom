@@ -1,6 +1,6 @@
-package com.company.competition;
+package com.company.tierB2;
 
-import com.company.entity.Pokemon;
+import com.company.tierC.Pokemon;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -9,10 +9,11 @@ import java.util.ArrayList;
 public class Roster {
     private static Roster rosterInstance;
     private ArrayList<Pokemon> roster = null;
-    private int maxSize = 8;
+    private int maxSize;
 
     private Roster() {
         roster = new ArrayList<Pokemon>();
+        maxSize = 8;
     }
     public static Roster getInstance() {
         if(rosterInstance == null)

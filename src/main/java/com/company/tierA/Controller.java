@@ -1,9 +1,9 @@
-package com.company.controller;
+package com.company.tierA;
 
-import com.company.competition.Match;
-import com.company.competition.Roster;
-import com.company.creator.PokemonService;
-import com.company.entity.Pokemon;
+import com.company.tierC2.Match;
+import com.company.tierB2.Roster;
+import com.company.tierB.PokemonService;
+import com.company.tierC.Pokemon;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

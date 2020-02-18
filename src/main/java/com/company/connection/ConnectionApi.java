@@ -1,7 +1,7 @@
 package com.company.connection;
 
-import com.company.entity.MovesJson;
-import com.company.entity.PokemonJson;
+import com.company.tierC.MovesJson;
+import com.company.tierC.PokemonJson;
 import com.google.gson.Gson;
 
 import java.io.IOException;

@@ -1,12 +1,12 @@
-package com.company.creator;
+package com.company.tierB;
 
 
 import com.company.Utility;
 import com.company.connection.ConnectionApi;
-import com.company.entity.Moves;
-import com.company.entity.MovesJson;
-import com.company.entity.Pokemon;
-import com.company.entity.PokemonJson;
+import com.company.tierC.Moves;
+import com.company.tierC.MovesJson;
+import com.company.tierC.Pokemon;
+import com.company.tierC.PokemonJson;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,12 +32,17 @@ public class PokemonService {
         List<Moves> movesJavaList = new ArrayList<>();
 
         if (!moveList.isEmpty()) {
-            for (String moveUrl : moveList) {
+            String url = moveList.get(2);
+            MovesJson movesJson = connectionApi.getMove(url);
+            Moves movesJava = new Moves(movesJson);
+            movesJavaList.add(movesJava);
+
+            /*for (String moveUrl : moveList) {
                 connectionApi.getMove(moveUrl);
                 MovesJson movesJson = connectionApi.getMove(moveUrl);
                 Moves movesJava = new Moves(movesJson);
                 movesJavaList.add(movesJava);
-            }
+            }*/
         } else System.out.println(Utility.fetchFail);
         return movesJavaList;
     }
