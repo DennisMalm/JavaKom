@@ -9,7 +9,7 @@ import static com.mongodb.client.model.Filters.eq;
 
 public class HandleData {
 
-    ConnectionMongo connectionInstance = ConnectionMongo.INSTANCE;
+    /*ConnectionMongo connectionInstance = ConnectionMongo.INSTANCE;
     MongoCollection<Document> movieCollection = connectionInstance.getCollection("movieDetails");
     List<Document> list = new ArrayList<>();
 
@@ -32,6 +32,6 @@ public class HandleData {
             System.out.println("Title: " + actor.get("title") + " Cast: " + actor.get("actors"));
         });
     }
-
+*/
 
 }

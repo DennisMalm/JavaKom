@@ -42,12 +42,12 @@ public class Pokemon {
         System.out.println(types.size());
         System.out.println(name + "\nTypes:");
         types.forEach(System.out::println);
-        System.out.println(health);
-        System.out.println(speed);
-        System.out.println(attack);
-        System.out.println(specialAttack);
-        System.out.println(defense);
-        System.out.println(specialDefense);
+        System.out.println("Health: " + health);
+        System.out.println("Speed: " + speed);
+        System.out.println("Attack: " + attack);
+        System.out.println("Special attack: " + specialAttack);
+        System.out.println("Defense: " + defense);
+        System.out.println("Special defense: " + specialDefense);
         System.out.println(moves.get(0).getName() + " " + moves.get(0).getPower() + " " + moves.get(0).getAccuracy());
         //moves.forEach(move -> System.out.println(move.getName() + move.getPower()) );
 

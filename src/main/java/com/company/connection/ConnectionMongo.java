@@ -8,7 +8,7 @@ import org.bson.Document;
 
 public class ConnectionMongo {
 
-    public static final ConnectionMongo INSTANCE = new ConnectionMongo() ;
+    /*public static final ConnectionMongo INSTANCE = new ConnectionMongo() ;
 
     private String userName = "Lantash";
     private String passWord = "Fiskrom123";
@@ -34,7 +34,7 @@ public class ConnectionMongo {
 
         collection.insertOne(doc);
     }
-
+*/
 
 
 }

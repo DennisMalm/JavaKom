@@ -35,7 +35,7 @@ public class ConnectionApi {
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
         //  Insert into local DB if not exists
-        ConnectionMongo.INSTANCE.addRecord(response.body());
+        //  ConnectionMongo.INSTANCE.addRecord(response.body());
         return response.body();
     }
 

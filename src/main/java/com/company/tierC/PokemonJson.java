@@ -33,18 +33,13 @@ public class PokemonJson {
 
     public List getType() {
         List<String> sendType = new ArrayList<>();
-
         types.forEach(type -> sendType.add(type.getType().getName()));
         return sendType;
     }
 
     public List moveUrl() {
         List<String> moveList = new ArrayList<>();
-
         moves.forEach(move -> moveList.add(move.getMove().getUrl()));
-        /*for (PokeMoves move : moves) {
-            moveList.add(move.getMove().getUrl());
-        }*/
         return moveList;
     }
 

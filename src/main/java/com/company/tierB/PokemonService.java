@@ -37,12 +37,6 @@ public class PokemonService {
             Moves movesJava = new Moves(movesJson);
             movesJavaList.add(movesJava);
 
-            /*for (String moveUrl : moveList) {
-                connectionApi.getMove(moveUrl);
-                MovesJson movesJson = connectionApi.getMove(moveUrl);
-                Moves movesJava = new Moves(movesJson);
-                movesJavaList.add(movesJava);
-            }*/
         } else System.out.println(Utility.fetchFail);
         return movesJavaList;
     }
