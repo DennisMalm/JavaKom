@@ -10,7 +10,7 @@ import static com.mongodb.client.model.Filters.eq;
 public class HandleData {
 
     /*ConnectionMongo connectionInstance = ConnectionMongo.INSTANCE;
-    MongoCollection<Document> movieCollection = connectionInstance.getCollection("movieDetails");
+    MongoCollection<Document> pokemonCollection = connectionInstance.getPokemonCollection();
     List<Document> list = new ArrayList<>();
 
     HandleData() {
@@ -18,20 +18,20 @@ public class HandleData {
     }
 
     public void printAll() {
-        movieCollection.find().into(list);
-        list.forEach(movie -> {
-            System.out.println("\nRecord found!\nTitle: " + movie.get("title") + "\nRelease year: " + movie.get("year"));
+        pokemonCollection.find().into(list);
+        list.forEach(pokemon -> {
+            System.out.println("\nRecord found!\nName: " + pokemon.get("name"));
         });
 
     }
 
-    public void searchRecord() {
+    public boolean searchRecord(String name) {
 
-        List<Document> actors = movieCollection.find(eq("actors","Will Smith")).into(new ArrayList<>());
-        actors.forEach(actor -> {
-            System.out.println("Title: " + actor.get("title") + " Cast: " + actor.get("actors"));
+        List<Document> pokemons = pokemonCollection.find(eq("name", name)).into(new ArrayList<>());
+        pokemons.forEach(pokemon -> {
+            System.out.println("Pokemon " + pokemon.get("title"));
         });
-    }
-*/
+        return pokemons.contains(name);
+    }*/
 
 }

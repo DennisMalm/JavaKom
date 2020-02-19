@@ -3,6 +3,7 @@ package com.company.tierB;
 
 import com.company.Utility;
 import com.company.connection.ConnectionApi;
+import com.company.connection.ConnectionMongo;
 import com.company.tierC.Moves;
 import com.company.tierC.MovesJson;
 import com.company.tierC.Pokemon;
@@ -16,9 +17,13 @@ import java.util.List;
 public class PokemonService {
 
     ConnectionApi connectionApi = ConnectionApi.getInstance();
+    ConnectionMongo connectionMongo = ConnectionMongo.INSTANCE;
 
     public Pokemon pokemonExists() throws IOException, InterruptedException {
         String name = Utility.validInput();
+        if (connectionMongo.searchRecord(name)){
+            return null;
+        }
         return createPokemon(name);
     }
 

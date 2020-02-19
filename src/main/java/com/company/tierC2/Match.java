@@ -21,7 +21,7 @@ public class Match {
         boolean stop = false;
         while (true) {
 
-            if (pokeOne.attack(pokeTwo)){
+            if (pokeOne.attack(pokeTwo)) {
                 winners.add(pokeOne);
                 losers.add(pokeTwo);
                 break;
