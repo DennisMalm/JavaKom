@@ -8,6 +8,7 @@ import com.company.tierC.Moves;
 import com.company.tierC.MovesJson;
 import com.company.tierC.Pokemon;
 import com.company.tierC.PokemonJson;
+import org.bson.Document;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,9 +22,11 @@ public class PokemonService {
 
     public Pokemon pokemonExists() throws IOException, InterruptedException {
         String name = Utility.validInput();
-        if (connectionMongo.searchRecord(name)){
-            return null;
+        if (connectionMongo.searchRecord(name)) {
+
+            return importPokemon(name);
         }
+        //return null;
         return createPokemon(name);
     }
 
@@ -31,7 +34,15 @@ public class PokemonService {
         PokemonJson pokemonJson = connectionApi.getPokemon(name);
         return new Pokemon(pokemonJson, createMoveSet(pokemonJson));
     }
-
+    public Pokemon importPokemon(String name) throws IOException, InterruptedException {
+        ConnectionMongo.INSTANCE.getPokemon(name);
+       PokemonJson pokemonJson = connectionMongo.getPokemon(name);
+       return new Pokemon(pokemonJson, createMoveSet(pokemonJson));
+    }
+    /*public List<Moves> importMoveSet(PokemonJson){
+        return
+    }*/
+    //TODO Search DB for move and add
     public List<Moves> createMoveSet(PokemonJson pokemonJson) throws IOException, InterruptedException {
         List<String> moveList = pokemonJson.moveUrl();
         List<Moves> movesJavaList = new ArrayList<>();

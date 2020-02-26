@@ -17,22 +17,27 @@ public class Match {
         if (size < 2) {
             System.out.println("You have " + size + " fighters, add " + (8 - size) + " more.");
         }
+        Pokemon attackFirst = pokeOne.getSpeed() > pokeTwo.getSpeed() ? pokeOne : pokeTwo;
+        Pokemon attackSecond = attackFirst == pokeOne ? pokeTwo : pokeOne;
 
-        boolean stop = false;
-        while (true) {
+        System.out.println(attackFirst.getName() + " attacks first with a speed of " + attackFirst.getSpeed());
+        System.out.println(attackSecond.getName() + " attacks first with a speed of " + attackSecond.getSpeed());
 
-            if (pokeOne.attack(pokeTwo)) {
-                winners.add(pokeOne);
-                losers.add(pokeTwo);
+        while(true){
+
+            if(attackFirst.attack(attackSecond)){
+                logResults(attackFirst,attackSecond);
                 break;
-            } else if (pokeTwo.attack(pokeOne)) {
-                winners.add(pokeTwo);
-                losers.add(pokeOne);
+            } else if(attackSecond.attack(attackFirst)){
+                logResults(attackSecond, attackFirst);
                 break;
             }
         }
+    }
+    public void logResults (Pokemon winner, Pokemon loser){
+        this.winners.add(winner);
+        this.losers.add(loser);
         System.out.println("Winner: " + winners.get(0).getName());
         System.out.println("Loser: " + losers.get(0).getName());
     }
-
 }

@@ -35,12 +35,16 @@ public class ConnectionApi {
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
         //  Insert into local DB if not exists
-        ConnectionMongo.INSTANCE.addRecord(response.body());
+        if(!ConnectionMongo.INSTANCE.searchRecord(response.body())){
+            ConnectionMongo.INSTANCE.addRecord(response.body());
+            return null;
+        }
         return response.body();
     }
 
     public PokemonJson getPokemon(String endPoint) throws IOException, InterruptedException {
-        return new Gson().fromJson(conn(urlPokemon + endPoint), PokemonJson.class);
+        PokemonJson poke = new Gson().fromJson(conn(urlPokemon + endPoint), PokemonJson.class);
+        return poke;
     }
 
     public MovesJson getMove(String endPoint) throws IOException, InterruptedException {

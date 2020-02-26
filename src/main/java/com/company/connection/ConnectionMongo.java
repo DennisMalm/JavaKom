@@ -1,5 +1,8 @@
 package com.company.connection;
 
+import com.company.tierC.PokemonJson;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
@@ -7,6 +10,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Projections;
 import org.bson.Document;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,17 +33,18 @@ public class ConnectionMongo {
         return collection;
     }
 
-    public void addRecord(String body) {
+    public boolean addRecord(String body) {
 
         Document doc = Document.parse(body);
         System.out.println(doc);
         if (searchRecord(doc.get("name").toString())) {
-            System.out.println("Document already exists.");
+            System.out.println("Document already exists: " + doc.get("name"));
 
         } else {
-            System.out.println("Document added to database.");
+            System.out.println("Document added to database: " + doc.get("name"));
             collection.insertOne(doc);
         }
+        return true;
     }
 
     public boolean searchRecord(String nameToCheck) {
@@ -52,6 +57,12 @@ public class ConnectionMongo {
             System.out.println(" NOT IN DATABASE.");
             return false;
         }
+    }
+    public PokemonJson getPokemon(String name){
+        ArrayList<Document> list = new ArrayList<>();
+        collection.find(eq("name", name)).into(list);
+        System.out.println(list.get(0));
+        return new Gson().fromJson((list.get(0).toJson()), PokemonJson.class);
     }
 
     /*public boolean search(String name) {
