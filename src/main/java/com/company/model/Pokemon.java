@@ -1,4 +1,4 @@
-package com.company.tierC;
+package com.company.model;
 
 import lombok.Data;
 
@@ -11,7 +11,6 @@ public class Pokemon {
     private String name;
     private HashMap stats;
     private List types;
-    private List<Moves> moves;
     private int health;
     private int hp;
     private int speed;
@@ -21,7 +20,7 @@ public class Pokemon {
     private int specialDefense;
     private boolean winner;
 
-    public Pokemon(PokemonJson pokemonJson, List<Moves> moves) {
+    public Pokemon(PokemonJson pokemonJson) {
         this.name = pokemonJson.getName();
         this.stats = pokemonJson.getStats();
         this.types = pokemonJson.getType();
@@ -32,41 +31,40 @@ public class Pokemon {
         this.defense = (int) stats.get("defense");
         this.specialAttack = (int) stats.get("special-attack");
         this.specialDefense = (int) stats.get("special-defense");
-        this.moves = moves;
-
-
+        
     }
 
     public void testInfo() {
-        System.out.println("This is an Java Objekt.");
+        System.out.println("---THIS IS A JAVA OBJECT---.");
         System.out.println(types.size());
         System.out.println(name + "\nTypes:");
         types.forEach(System.out::println);
         System.out.println("Health: " + health);
         System.out.println("Speed: " + speed);
         System.out.println("Attack: " + attack);
-        System.out.println("Special attack: " + specialAttack);
         System.out.println("Defense: " + defense);
+        System.out.println("Special attack: " + specialAttack);
         System.out.println("Special defense: " + specialDefense);
-        System.out.println(moves.get(0).getName() + " " + moves.get(0).getPower() + " " + moves.get(0).getAccuracy());
-        //moves.forEach(move -> System.out.println(move.getName() + move.getPower()) );
-
 
     }
 
+    public void reset(){
+        this.hp = this.health;
+    }
     public boolean attack(Pokemon defending) {
-        String name = moves.get(0).getName();
-        double power = moves.get(0).getPower();
-        int accuracy = moves.get(0).getPower();
-        return defending.defend(power / 10);
+
+        return defending.defend(attack / 3);
 
     }
-    public boolean defend(double attackPower){
-        this.hp -= attackPower;
-        System.out.println(String.format(this.name + " takes %s damage.", attackPower));
-        if (hp <= 0){
+
+    public boolean defend(double attackPower) {
+        this.hp -= attackPower - (1);
+        System.out.println(String.format(this.name + " takes %s damage.", (attackPower - 1)));
+        System.out.println(hp + " left.");
+        if (hp <= 0) {
             System.out.println(this.name + " is dead.");
             System.out.println(hp + " left.");
+
             return true;
         }
         return false;

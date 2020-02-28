@@ -1,22 +1,22 @@
 package com.company.connection;
 
-import com.company.tierC.PokemonJson;
+import com.company.model.PokemonJson;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Projections;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.bson.Document;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
 
+@Data
+@NoArgsConstructor
 public class ConnectionMongo {
 
     public static final ConnectionMongo INSTANCE = new ConnectionMongo();
@@ -28,50 +28,31 @@ public class ConnectionMongo {
     private MongoDatabase database = mongoClient.getDatabase("Javakombat");
     private MongoCollection<Document> collection = database.getCollection("pokemon");
 
-
-    public MongoCollection<Document> getPokemonCollection() {
-        return collection;
-    }
-
     public boolean addRecord(String body) {
 
-        Document doc = Document.parse(body);
-        System.out.println(doc);
-        if (searchRecord(doc.get("name").toString())) {
-            System.out.println("Document already exists: " + doc.get("name"));
-
-        } else {
-            System.out.println("Document added to database: " + doc.get("name"));
-            collection.insertOne(doc);
-        }
+        collection.insertOne(Document.parse(body));
+        System.out.println("Record added to DB: " + body);
         return true;
     }
 
-    public boolean searchRecord(String nameToCheck) {
-
-        MongoCursor<Document> iterable = collection.find(eq("name", nameToCheck)).projection(Projections.include("name")).limit(1).iterator();
+    public boolean searchRecord(String checkName) {
+        MongoCursor<Document> iterable = collection.find(eq("name", checkName))
+                .projection(Projections.include("name"))
+                .limit(1).iterator();
         if (iterable.hasNext()) {
-            System.out.println(" ALREADY EXISTS.");
+            System.out.println(checkName + " already exists in database.");
             return true;
         } else {
-            System.out.println(" NOT IN DATABASE.");
+            System.out.println(checkName + " not in database");
             return false;
         }
     }
-    public PokemonJson getPokemon(String name){
+
+    public PokemonJson getPokemon(String name) {
         ArrayList<Document> list = new ArrayList<>();
         collection.find(eq("name", name)).into(list);
-        System.out.println(list.get(0));
+        System.out.println("Pokemon loaded from SB: " + list.get(0));
         return new Gson().fromJson((list.get(0).toJson()), PokemonJson.class);
     }
-
-    /*public boolean search(String name) {
-
-        List<Document> pokemons = collection.find(eq("name", "charmander")).into(new ArrayList<>());
-        pokemons.forEach(pokemon -> {
-            System.out.println("Pokemon " + pokemon.get("name"));
-        });
-        return pokemons.contains(name);
-    }*/
 
 }

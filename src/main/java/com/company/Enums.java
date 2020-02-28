@@ -22,7 +22,6 @@ public class Enums {
             4, Choice.FIGHT,
             5, Choice.SEARCH,
             6, Choice.EDIT,
-            7, Choice.MOVIES,
-            8, Choice.QUIT
+            7, Choice.QUIT
     );
 }

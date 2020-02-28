@@ -1,4 +1,4 @@
-package com.company.tierC;
+package com.company.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,18 +15,16 @@ public class PokemonJson {
     private int height;
     private int weight;
     private int id;
-    
-    public List<PokemonType> types;
-    public List<PokeMoves> moves;
-    public List<PokeStats> stats;
-    public List<MovesJson> jsonMove;
 
-    public HashMap getStats(){
+    public List<PokemonType> types;
+    public List<PokeStats> stats;
+
+    public HashMap getStats() {
 
         HashMap<String, Integer> statMap = new HashMap<>();
 
-        for (PokeStats stat : stats){
-            statMap.put(stat.getStat().getName(),stat.getBase_stat());
+        for (PokeStats stat : stats) {
+            statMap.put(stat.getStat().getName(), stat.getBase_stat());
         }
         return statMap;
     }
@@ -37,22 +35,13 @@ public class PokemonJson {
         return sendType;
     }
 
-    public List moveUrl() {
-        List<String> moveList = new ArrayList<>();
-        moves.forEach(move -> moveList.add(move.getMove().getUrl()));
-        return moveList;
-    }
-
-
-    public void getPokeInfo() {
+    public void getJsonInfo() {
 
         System.out.println(types.size());
         System.out.println(name + "\nTypes:");
         types.forEach(type -> System.out.println(type.getType().getName()));
-        System.out.println(moves.get(0).getMove().getName());
         System.out.println(stats.get(0).base_stat + " " + stats.get(0).stat.name);
-        //  Gets all pokemon moves.
-        //  moves.forEach(move -> System.out.println(move.getMove().getName()));
+
     }
 
     @Data
@@ -63,22 +52,8 @@ public class PokemonJson {
 
         @Data
         @NoArgsConstructor
-        private class SpecificStat{
+        private class SpecificStat {
             private String name;
-        }
-    }
-
-    @Data
-    @NoArgsConstructor
-    private class PokeMoves {
-        private AttackMove move;
-
-
-        @Data
-        @NoArgsConstructor
-        private class AttackMove {
-            private String name;
-            private String url;
         }
     }
 
@@ -94,6 +69,19 @@ public class PokemonJson {
             private String name;
         }
 
+    }
+
+    @Data
+    @NoArgsConstructor
+    private class sprites {
+        private String back_default;
+        private String back_female;
+        private String back_shiny;
+        private String back_shiny_female;
+        private String front_default;
+        private String front_female;
+        private String front_shiny;
+        private String front_shiny_female;
     }
 
 }

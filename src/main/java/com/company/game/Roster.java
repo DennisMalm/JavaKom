@@ -1,6 +1,6 @@
-package com.company.tierB2;
+package com.company.game;
 
-import com.company.tierC.Pokemon;
+import com.company.model.Pokemon;
 import lombok.Data;
 
 import java.util.ArrayList;

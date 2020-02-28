@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.tierA.Controller;
+import com.company.controller.Controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
