@@ -2,6 +2,7 @@ package com.company.test;
 
 
 import com.company.Utility;
+import com.company.model.Pokemon;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -17,5 +18,14 @@ public class Tests {
         }
     }
 
+    @Test
+    public void testCreatePokemon(){
+
+        Pokemon testPokemon = new Pokemon();
+        String name = "testPokemon";
+
+        testPokemon.setName(name);
+        Assert.assertEquals(name, name);
+    }
 
 }
