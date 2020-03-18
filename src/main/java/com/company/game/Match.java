@@ -9,6 +9,11 @@ public class Match {
 
     Roster roster = Roster.getInstance();
     List<Pokemon> winners = new ArrayList<>();
+
+    public List getWinners(){
+        return winners;
+    }
+
     List<Pokemon> losers = new ArrayList<>();
 
     public boolean matchSetup(){
